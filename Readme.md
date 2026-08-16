@@ -2,7 +2,7 @@
 
 An end-to-end, production-grade distributed data engineering pipeline built using **PySpark** and **Delta Lake** on **Databricks**, loading final analytics-ready data into a **Snowflake** data warehouse.
 
-This project implements a robust **Medallion Architecture (Bronze -> Silver -> Gold)**, designed with industrial best practices for data validation, performance optimization, and operational resilience. It is structured to serve as a strong portfolio showcase for a **Mid-Senior Data Engineer (3-4 years of experience)**.
+This project implements a robust **Medallion Architecture (Bronze -> Silver -> Gold)**, designed with industrial best practices for data validation, performance optimization, and operational resilience. 
 
 ---
 
@@ -57,9 +57,9 @@ graph TD
 
 ---
 
-## 🛠️ Tech Stack & Justifications (Interview-Ready)
+## 🛠️ Tech Stack 
 
-| Technology | Role | Justification / Interview Response |
+| Technology | Role |
 | :--- | :--- | :--- |
 | **Databricks** | Distributed Compute | Serverless auto-scaling compute, seamless workspace integration, and native support for Delta Lake. |
 | **PySpark** | Core ETL Processor | Handles distributed computations on massive datasets. We leverage Spark’s Catalyst Optimizer and Tungsten execution engine. |
@@ -151,17 +151,3 @@ python -m src.main
 
 ---
 
-## ❄️ Production Snowflake Configuration
-
-For production, create a `.env` file in the root directory (or use Databricks secrets):
-```env
-ENV=production
-SF_USER=your_snowflake_username
-SF_PASSWORD=your_snowflake_password
-SF_ACCOUNT=your_org-your_account
-SF_WAREHOUSE=COMPUTE_WH
-SF_DATABASE=ECOMMERCE_DB
-SF_SCHEMA=PUBLIC
-SF_ROLE=SYSADMIN
-```
-Ensure you install the Snowflake Spark connector jar on your Databricks cluster (configured in the provided `databricks_job.json` and `ecommerce_dag.py`).
