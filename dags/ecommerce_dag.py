@@ -4,7 +4,7 @@ from airflow import DAG
 from airflow.providers.databricks.operators.databricks import DatabricksSubmitRunOperator
 from airflow.utils.dates import days_ago
 
-# Default arguments for Airflow DAG (vital for a 3-4 years exp candidate to show operational readiness)
+# Default arguments for Airflow DAG
 default_args = {
     'owner': 'data-engineering',
     'depends_on_past': False,
