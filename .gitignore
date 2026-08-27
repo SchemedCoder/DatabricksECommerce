@@ -1,32 +1,33 @@
-# Byte-compiled / optimized / DLL files
+# Ignore interview preparation files
+interview_guide.md
+
+# Virtual environments
+.env
+venv/
+.venv/
+env/
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
 
-# Local Data and Storage
+# Local spark/delta lake data and cache
 data/
+jars/
 storage/
 spark-warehouse/
-metastore_db/
+derby/
 derby.log
-
-# Environment variables
-.env
+metastore_db/
 
 # Pytest / unit tests
 .pytest_cache/
 .coverage
 htmlcov/
 
-# Virtual Environments
-venv/
-.venv/
-env/
-ENV/
+# MacOS
+.DS_Store
 
-# IDE files
-.idea/
+# IDEs
 .vscode/
+.idea/
 *.swp
 *.swo
