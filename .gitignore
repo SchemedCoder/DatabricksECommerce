@@ -8,6 +8,9 @@ venv/
 env/
 __pycache__/
 *.pyc
+*.pkl
+ml/*.pkl
+
 
 # Local spark/delta lake data and cache
 data/
