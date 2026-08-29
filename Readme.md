@@ -1,4 +1,4 @@
-# E-Commerce Metrics & Revenue Prediction Data Platform
+# E-Commerce Metrics & Data Warehouse Platform
 
 A production-grade distributed data engineering platform built in **PySpark** and **Delta Lake** on **Databricks**, loading final analytics-ready conformed datasets into a **Snowflake** data warehouse.
 
@@ -23,11 +23,9 @@ This project implements a robust **Medallion Architecture (Bronze -> Silver -> G
   │     ▼
   └── GOLD LAYER: Analytical summaries aggregated by category.
            │
-           ├────────────────────────────┐
-           ▼                            ▼
-[Storage: Delta Lake / Unity Catalog]   [ML & Analytics]
-  └── Silver & Gold Delta Tables           ├── revenue_model.py (Scikit-Learn Regression)
-                                           └── Snowflake Data Warehouse
+           ▼
+[Storage: Delta Lake / Unity Catalog]
+  └── Silver & Gold Delta Tables (Served to Snowflake Data Warehouse)
 ```
 
 ---
@@ -39,7 +37,6 @@ This project implements a robust **Medallion Architecture (Bronze -> Silver -> G
 - **Warehouse**: Snowflake Data Warehouse
 - **Orchestration**: Apache Airflow / Databricks Workflows
 - **Validation & Testing**: Pytest
-- **Machine Learning**: Scikit-Learn
 
 ---
 
@@ -51,8 +48,6 @@ This project implements a robust **Medallion Architecture (Bronze -> Silver -> G
 ├── warehouse/
 │   ├── schema.sql            # Unity Catalog & Snowflake DDL tables
 │   └── queries.sql           # Analytics, time-travel, and optimization query examples
-├── ml/
-│   └── revenue_model.py      # ML pipeline training model on Gold Delta aggregates
 ├── tests/
 │   ├── conftest.py           # Pytest local Spark Session fixture with Delta Jar downloads
 │   └── test_etl.py           # Unit tests for cleansing and DQS checks
@@ -86,7 +81,7 @@ cp .env.example .env
 ```
 
 ### 3. Run the End-to-End Demo
-To seed mock files, run the batch Medallion pipeline, train the ML model, and verify Delta table counts, execute:
+To seed mock files, run the batch Medallion pipeline, and verify Delta table counts, execute:
 ```bash
 python local_run.py
 ```

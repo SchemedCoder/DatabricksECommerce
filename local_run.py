@@ -18,13 +18,12 @@ if workspace_dir not in sys.path:
 
 import local_generator
 from batch import batch_etl
-from ml import revenue_model
 
 def clear_data():
     """
     Cleans up all data directories to ensure a clean end-to-end run.
     """
-    paths_to_clean = ["data/delta", "data/spark-warehouse", "data/derby", "data/warehouse_fallback", "ml/revenue_model.pkl"]
+    paths_to_clean = ["data/delta", "data/spark-warehouse", "data/derby", "data/warehouse_fallback"]
     print("[*] Cleaning up previous data files...")
     for path in paths_to_clean:
         if os.path.exists(path):
@@ -39,7 +38,7 @@ def clear_data():
 
 def main():
     print("====================================================================")
-    print("       E-COMMERCE METRICS & REVENUE PREDICTION DATA PLATFORM")
+    print("           E-COMMERCE METRICS & DATA WAREHOUSE PLATFORM")
     print("====================================================================")
     
     # 1. Clean up folders
@@ -61,18 +60,9 @@ def main():
         payments_path="data/payments.csv"
     )
     
-    # 4. Run ML Pipeline (Train Sales/Revenue Prediction model)
+    # 4. Delta Lake Verifications
     print("\n----------------------------------------------------")
-    print("   STAGE 2: Training Category Revenue Prediction Model")
-    print("----------------------------------------------------")
-    revenue_model.train_revenue_prediction_model(
-        gold_path="data/delta/gold_category_summary",
-        model_output_path="ml/revenue_model.pkl"
-    )
-    
-    # 5. Delta Lake Verifications
-    print("\n----------------------------------------------------")
-    print("   STAGE 3: Querying Delta Tables & Verifications")
+    print("   STAGE 2: Querying Delta Tables & Verifications")
     print("----------------------------------------------------")
     spark = batch_etl.get_spark_session()
     
